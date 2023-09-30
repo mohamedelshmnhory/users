@@ -9,11 +9,7 @@ class FailureHandler {
   final StatusChecker _statusChecker = StatusChecker();
 
   Failure handle({Request? request, dynamic exception, Response? response}) {
-    final failureInfo = FailureInfo(
-      request: request,
-      exception: exception,
-      response: response,
-    );
+    final failureInfo = FailureInfo(request: request, exception: exception, response: response);
     Failure? failure;
     if (exception is ErrorException) {
       failure = ErrorFailure(

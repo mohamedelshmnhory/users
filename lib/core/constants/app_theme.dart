@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'app_colors.dart';
+import '../resources.dart';
 
 final radius = BorderRadius.circular(12.sp);
 
@@ -9,7 +10,7 @@ class AppTheme {
   AppTheme._();
 
   static final ThemeData light = ThemeData(
-    useMaterial3: true,
+    // useMaterial3: true,
     // fontFamily: 'Hacen-Tunisia',
     brightness: Brightness.light,
     primaryColor: AppColors.primary,
@@ -23,7 +24,7 @@ class AppTheme {
       color: AppColors.primary,
     ),
     cardTheme: CardTheme(color: AppColors.accent, elevation: 4.sp, shape: RoundedRectangleBorder(borderRadius: radius)),
-    scaffoldBackgroundColor: AppColors.accent,
+    // scaffoldBackgroundColor: AppColors.accent,
     //configure button theme
     buttonTheme: ButtonThemeData(
       colorScheme: const ColorScheme.light().copyWith(
@@ -45,12 +46,17 @@ class AppTheme {
 
     //configure app bar theme
     appBarTheme: AppBarTheme(
-      centerTitle: true,
-      iconTheme: const IconThemeData(color: AppColors.primary),
-      color: AppColors.accent,
-      titleTextStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18.sp),
+      toolbarHeight: 60,
+      elevation: 5,
+      iconTheme: const IconThemeData(color: AppColors.black),
+      // color: AppColors.primary,
+      backgroundColor: AppColors.white,
+      titleTextStyle: AppStyles.bold18.copyWith(color: AppColors.black),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(bottom: Radius.circular(10))),
     ),
-
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(backgroundColor: AppColors.white),
+    navigationBarTheme: const NavigationBarThemeData(backgroundColor: AppColors.white, elevation: 15, height: 60),
+    navigationRailTheme: const NavigationRailThemeData(backgroundColor: AppColors.white, elevation: 15),
     //list tile
     listTileTheme: ListTileThemeData(
       iconColor: AppColors.primary,

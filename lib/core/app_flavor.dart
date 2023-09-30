@@ -5,7 +5,6 @@ enum Flavors {
   testing,
 }
 
-
 class AppFlavor {
   static Flavors appFlavor = Flavors.production;
 
@@ -22,7 +21,9 @@ class AppFlavor {
     switch (appFlavor) {
       case Flavors.production:
       case Flavors.testing:
-        return "https://reqres.in/api/";
+        return "http://16.171.110.113/api/";
+        return "http://51.20.86.237:8000/api/";
+        return "http://10.0.2.2:8000/api/"; //10.0.2.2
     }
   }
 }

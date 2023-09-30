@@ -29,10 +29,7 @@ class StatusChecker {
   final serviceNotAvailable = [404, ..._range(500, 599)];
 
   HTTPCodes call(int? statusCode) {
-    final error = validationError +
-        // authorizationError +
-        resourceNotFoundError +
-        methodNotAllowedError;
+    final error = validationError + authorizationError + resourceNotFoundError + methodNotAllowedError;
 
     final authError = authorizationError + authenticationError;
     if (success.contains(statusCode)) return HTTPCodes.success;

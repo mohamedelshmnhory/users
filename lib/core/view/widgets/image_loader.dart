@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:flutter/foundation.dart';
 import '../../resources.dart';
 
 class ImageLoader extends StatefulWidget {
@@ -104,7 +104,6 @@ class _ImageLoaderState extends State<ImageLoader> with TickerProviderStateMixin
           memCacheHeight: memCacheHeight,
           memCacheWidth: memCacheWidth,
           imageUrl: widget.image.imagePath,
-
           // CachedNetworkImage.logLevel = CacheManagerLogLevel.debug;
           progressIndicatorBuilder: (context, url, downloadProgress) {
             return Center(
@@ -151,8 +150,10 @@ class _ImageLoaderState extends State<ImageLoader> with TickerProviderStateMixin
         ),
       );
     }
-    if (Platform.environment.containsKey('FLUTTER_TEST')) {
-      return const Center(child: Text('Image'));
+    if (!kIsWeb) {
+      if (Platform.environment.containsKey('FLUTTER_TEST')) {
+        return const Center(child: Text('Image'));
+      }
     }
 
     return ClipRRect(borderRadius: widget.borderRadius ?? BorderRadius.zero, child: loadImage());

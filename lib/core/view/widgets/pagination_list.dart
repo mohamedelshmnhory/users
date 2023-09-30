@@ -53,7 +53,8 @@ class _PaginationListState extends State<PaginationList> {
     if (!_scrollController.hasClients) return false;
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.offset;
-    return currentScroll >= (maxScroll * 0.70);
+    final threshold = maxScroll * 0.6;
+    return currentScroll >= threshold;
   }
 
   @override

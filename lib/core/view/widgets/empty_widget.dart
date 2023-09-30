@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../resources.dart';
@@ -15,10 +16,10 @@ class EmptyWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            icon ?? const Icon(Icons.not_interested_outlined),
+            icon ?? const Icon(CupertinoIcons.list_bullet),
             20.heightBox(),
             AppText(
-              text ?? 'no data',
+              text ?? 'empty',
               textAlign: TextAlign.center,
               style: AppStyles.medium18.copyWith(color: Colors.black45),
             ),

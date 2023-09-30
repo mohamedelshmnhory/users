@@ -1,6 +1,6 @@
 import '../../../../core/data/request/base_request.dart';
 import '../../../../core/profile_api.dart';
-import '../models/user_response_model.dart';
+import '../../../authentication/register/data/model/user.dart';
 
 class UsersRequest with Request, GetRequest {
   final BaseApi profileApi;
@@ -13,30 +13,52 @@ class UsersRequest with Request, GetRequest {
   String get path => profileApi.users;
 }
 
-class UserRequest with Request, GetRequest {
+class UserDetailsRequest with Request, GetRequest {
   final BaseApi profileApi;
-  UserRequest(this.profileApi, this.requestModel);
+  UserDetailsRequest(this.profileApi, this.model);
 
   @override
-  String get path => '${profileApi.users}/${requestModel.id}';
+  String get path => '${profileApi.users}/${model.id}';
 
-  @override
-  final UserModel requestModel;
+  final User model;
 }
 
-class UsersUpdateRequest with Request, PostRequest {
+class AddUserRequest with Request, PostRequest {
   final BaseApi profileApi;
   final bool isFile;
-  UsersUpdateRequest(this.profileApi, this.requestModel, {this.isFile = false});
+  AddUserRequest(this.profileApi, this.requestModel, {this.isFile = false});
 
   @override
-  String get path => profileApi.users;
+  String get path => '${profileApi.users}/';
 
   @override
   bool get multiPart => isFile;
 
   @override
-  final UserModel requestModel;
+  final User requestModel;
 }
 
+class UserUpdateRequest with Request, PutRequest {
+  final BaseApi profileApi;
+  final bool isFile;
+  UserUpdateRequest(this.profileApi, this.requestModel, {this.isFile = false});
 
+  @override
+  String get path => '${profileApi.users}/${requestModel.id}';
+
+  @override
+  bool get multiPart => isFile;
+
+  @override
+  final User requestModel;
+}
+
+class DeleteUserRequest with Request, DeleteRequest {
+  final BaseApi profileApi;
+  DeleteUserRequest(this.profileApi, this.model);
+
+  @override
+  String get path => '${profileApi.users}/${model.id}';
+
+  final User model;
+}

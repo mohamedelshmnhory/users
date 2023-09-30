@@ -42,12 +42,15 @@ class APIsManager {
   final FailureHandler _failureHandler = FailureHandler();
   final Dio _dio = Dio();
   // final List<Interceptor> interceptors;
-
+  // static const UrlencodedType = 'application/x-www-form-urlencoded';
+  // static const JsonType = 'application/json';
+  // static const Accept = 'Accept';
   Future<Either<Failure, R>> send<R, ER extends ResponseModel>({
     required Request request,
     required R Function(Map<String, dynamic> map)? responseFromMap,
     ER Function(Map<String, dynamic> map)? errorResponseFromMap,
   }) async {
+    // _dio.options.headers[Accept] = JsonType;
     Response<dynamic>? response;
     try {
       response = await _dio.request(
@@ -60,6 +63,8 @@ class APIsManager {
         options: Options(
           headers: request.headers,
           method: request.method,
+          // contentType: 'application/json',
+          // contentType: UrlencodedType,
         ),
       );
       //todo
@@ -85,14 +90,10 @@ class APIsManager {
       if (error.type == DioExceptionType.badResponse) {
         if (error.response?.statusCode != null && _statusChecker(error.response!.statusCode) == HTTPCodes.error) {
           try {
-            Map<String, dynamic> errorData = {};
-            if (error.response!.data is Map<String, dynamic>) {
-              errorData = error.response!.data;
-            } else {
-              errorData = {'error': error.response!.data};
-            }
+            final Map<String, dynamic> errorData = {'errors': error.response!.data};
+
             final exception = ErrorException(error.response!.statusCode!,
-                errorResponseFromMap != null ? errorResponseFromMap(errorData) : MessageResponse.fromMap(error.response!.data)
+                errorResponseFromMap != null ? errorResponseFromMap(errorData) : MessageResponse.fromMap(errorData)
                 // : MessageResponse.fromMap(errorData,code:error.response!.statusCode.toString()),
                 );
             return Left(
@@ -113,6 +114,7 @@ class APIsManager {
           }
         } else {
           final exception = ServerException(error.response);
+
           return Left(
             _failureHandler.handle(
               request: request,

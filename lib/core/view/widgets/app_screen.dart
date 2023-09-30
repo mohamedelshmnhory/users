@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../resources.dart';
 import '../../utils/utils.dart';
 import 'buttons/app_back_button.dart';
@@ -17,11 +15,11 @@ class AppScreen extends StatelessWidget {
       this.lightStatusBar = false,
       this.displayActions = false,
       this.actions,
-      this.centerTitle = true,
+      this.centerTitle = false,
       this.padding,
       this.leading,
       this.floatingActionButton,
-      this.backgroundColor = AppColors.white,
+      this.backgroundColor = AppColors.blueyGrey,
       this.drawer})
       : super(key: key);
 
@@ -43,24 +41,25 @@ class AppScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final uiOverlayStyle = SystemUiOverlayStyle(
-      statusBarColor: AppColors.transparent,
-      statusBarIconBrightness: lightStatusBar ? Brightness.light : Brightness.dark,
-      // For Android (dark icons)
-      statusBarBrightness: lightStatusBar ? Brightness.dark : Brightness.light,
-      // For iOS (dark icons)
-      systemStatusBarContrastEnforced: true,
-      systemNavigationBarColor: Colors.transparent,
-      // systemNavigationBarDividerColor: Colors.transparent,
-      systemNavigationBarIconBrightness: lightStatusBar ? Brightness.light : Brightness.dark,
-    );
+        // statusBarColor: AppColors.transparent,
+        // statusBarIconBrightness: lightStatusBar ? Brightness.light : Brightness.dark,
+        // // For Android (dark icons)
+        // statusBarBrightness: lightStatusBar ? Brightness.dark : Brightness.light,
+        // // For iOS (dark icons)
+        // systemStatusBarContrastEnforced: true,
+        // systemNavigationBarColor: Colors.transparent,
+        // // systemNavigationBarDividerColor: Colors.transparent,
+        // systemNavigationBarIconBrightness: lightStatusBar ? Brightness.light : Brightness.dark,
+        );
 
     return AnnotatedRegion(
       value: uiOverlayStyle,
       child: Scaffold(
         backgroundColor: backgroundColor,
         resizeToAvoidBottomInset: false,
-        body: SafeArea(
-          child: Padding(padding: padding ?? symmetricPadding(0, 15), child: child),
+        body: Padding(
+          padding: padding ?? symmetricPadding(15, 15),
+          child: child,
         ),
         appBar: withBack || appBar != null || title != null || !isNullOrEmpty(actions) ? buildAppBar(context) : null,
         bottomNavigationBar: bottomNavigationBar,
@@ -89,41 +88,12 @@ class AppScreen extends StatelessWidget {
   }
 
   buildLeading(BuildContext context) {
-    return withBack && Navigator.of(context).canPop()
-        ? InkWell(
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () => Navigator.pop(context),
-            child: Padding(
-              padding: EdgeInsets.all(3.0.sp),
-              child: Card(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Center(
-                  child: Icon(
-                    CupertinoIcons.back,
-                    color: Colors.deepOrange,
-                    size: 24.sp,
-                  ),
-                ),
-              ),
-            ),
-          )
-        : leading ?? const SizedBox();
+    return withBack && Navigator.of(context).canPop() ? const AppBackButton() : leading;
   }
 
   PreferredSizeWidget? buildAppBar(BuildContext context) {
     if (appBar != null) {
-      return AppBar(
-        automaticallyImplyLeading: false,
-        title: appBar!.title,
-        leading: buildLeading(context),
-        actions: buildActions(context),
-        centerTitle: true,
-        backgroundColor: AppColors.cherryRed,
-      );
+      return appBar;
     }
     if (title != null || lightStatusBar) {
       return getAppbar(context,
@@ -144,28 +114,14 @@ AppBar getAppbar(
   List<Widget>? actions,
   bool? transparent,
   Widget? leading,
-  bool centerTitle = true,
+  bool centerTitle = false,
 }) {
   return AppBar(
+    toolbarHeight: 60,
     centerTitle: centerTitle,
     automaticallyImplyLeading: false,
-    backgroundColor: transparent == null ? AppColors.accent : AppColors.accent,
-    systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarColor: AppColors.transparent,
-      statusBarIconBrightness: transparent ?? false ? Brightness.light : Brightness.dark,
-      // For Android (dark icons)
-      statusBarBrightness: transparent ?? false ? Brightness.dark : Brightness.light,
-      // For iOS (dark icons)
-      systemStatusBarContrastEnforced: true,
-      systemNavigationBarColor: Colors.transparent,
-      // systemNavigationBarDividerColor: Colors.transparent,
-      systemNavigationBarIconBrightness: transparent ?? false ? Brightness.light : Brightness.dark,
-    ),
     leading: leading ?? (Navigator.canPop(context) ? const AppBackButton() : null),
-    title: AppText(
-      title ?? '',
-      style: AppStyles.bold18,
-    ),
+    title: AppText(title ?? ''),
     actions: actions,
   );
 }

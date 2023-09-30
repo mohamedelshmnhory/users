@@ -1,6 +1,8 @@
+import 'package:dropdown_search/dropdown_search.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../resources.dart';
-import '../view/widgets/scaffold_pading.dart';
 
 class AppDecorations {
   static InputDecoration inputTextDecoration({
@@ -63,4 +65,59 @@ class AppDecorations {
         alignLabelWithHint: true,
         isDense: isDense,
       );
+
+  static final DecorationTween _tween = DecorationTween(
+    begin: BoxDecoration(
+      color: CupertinoColors.systemYellow,
+      boxShadow: const <BoxShadow>[],
+      borderRadius: BorderRadius.circular(20.0),
+    ),
+    end: BoxDecoration(
+      color: CupertinoColors.systemYellow,
+      boxShadow: CupertinoContextMenu.kEndBoxShadow,
+      borderRadius: BorderRadius.circular(20.0),
+    ),
+  );
+
+  // Or just do this inline in the builder below?
+  static Animation<Decoration> boxDecorationAnimation(Animation<double> animation) {
+    return _tween.animate(
+      CurvedAnimation(
+        parent: animation,
+        curve: Interval(0.0, CupertinoContextMenu.animationOpensAt),
+      ),
+    );
+  }
 }
+
+// DropDownDecoratorProps buildDropDownDecoratorProps(String title) {
+//   return DropDownDecoratorProps(
+//     baseStyle: AppStyles.medium14,
+//     dropdownSearchDecoration: InputDecoration(
+//       hintText: '${''} $title',
+//       hintStyle: TextStyle(fontSize: 12.sp),
+//       filled: true,
+//       fillColor: Colors.white,
+//       border: buildOutlineInputBorder,
+//       enabledBorder: buildOutlineInputBorder,
+//       focusedBorder: buildOutlineInputBorder,
+//       isDense: true,
+//       contentPadding: EdgeInsets.only(right: 10.w, left: 10.w, top: 5.h, bottom: 15.h),
+//     ),
+//
+//     // contentPadding: EdgeInsetsDirectional.only(start: SizeConfig.getW(10))),
+//   );
+// }
+
+OutlineInputBorder get buildOutlineInputBorder {
+  return OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Colors.grey));
+}
+
+// TextFieldProps buildSearchFieldProps(String title) {
+//   return TextFieldProps(
+//     decoration: InputDecoration(
+//       labelText: '${'Search'} $title',
+//       prefixIcon: const Icon(Icons.search),
+//     ),
+//   );
+// }

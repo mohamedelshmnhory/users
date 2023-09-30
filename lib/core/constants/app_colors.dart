@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
 
-  static const primary = Color(0xff3FAF91);
+  static const primary = Colors.blueGrey;
   static const appGreen = Color(0xff00AF4D);
   static const dark = Color(0xff003035);
+  static const fontColor = Color(0xff003035);
   static const darkGrey = Color(0xff707070);
   static const selectionGrey = Color.fromRGBO(203, 203, 203, 1);
   static const appRed = Color(0xffEC7B7B);
 
-  static const accent = white9;
+  static const accent = Colors.white;
   static const thirdColor = Color(0xffFDECE8);
   static const homeIcon = Color(0xffC6C6C6);
   static const cherryRed = Color(0xffed1c24);
@@ -162,7 +163,7 @@ class AppColors {
   static const greyishBrown = Color(0xff404040);
   static const lightBlueGrey = Color(0xffc5cee0);
   static const rhino = Color(0xd32d3958);
-  static const blueyGrey = Color(0xff8f9bb3);
+  static const blueyGrey = Color(0xffbdc4d2);
   static const eggplant = Color(0xff200e32);
   static const cloudBurst = Color(0xff222b45);
   static const secColors = Color(0xffFDECE8);

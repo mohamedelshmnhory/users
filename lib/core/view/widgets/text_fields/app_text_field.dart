@@ -131,6 +131,9 @@ class AppTextField extends StatelessWidget {
                     }
                   }
                 },
+                onTapOutside: (_) {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
                 decoration: AppDecorations.inputTextDecoration(
                   suffix: suffix,
                   prefix: prefix,

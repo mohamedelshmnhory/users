@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/app_colors.dart';
 
 class AppBackButton extends StatelessWidget {
   const AppBackButton({
@@ -22,7 +21,7 @@ class AppBackButton extends StatelessWidget {
             FocusScope.of(context).unfocus();
             if (Navigator.canPop(context)) Navigator.pop(context);
           },
-      icon: const Icon(Icons.arrow_back, color: AppColors.primary),
+      icon: const Icon(Icons.arrow_back),
     );
   }
 }
