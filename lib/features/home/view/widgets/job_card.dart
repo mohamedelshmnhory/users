@@ -69,14 +69,10 @@ class JobCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Row(
-          children: [
-            AppText(
-              job.name ?? "-",
-              textAlign: TextAlign.center,
-              style: AppStyles.bold18.copyWith(decoration: TextDecoration.none, color: AppColors.black),
-            ),
-          ],
+        child: AppText(
+          job.name ?? "-",
+          textAlign: TextAlign.center,
+          style: AppStyles.bold18.copyWith(decoration: TextDecoration.none, color: AppColors.black),
         ),
       ),
     );

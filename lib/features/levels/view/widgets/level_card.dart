@@ -70,14 +70,10 @@ class LevelCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Row(
-          children: [
-            AppText(
-              params.level?.name ?? "-",
-              textAlign: TextAlign.center,
-              style: AppStyles.bold18.copyWith(decoration: TextDecoration.none, color: AppColors.black),
-            ),
-          ],
+        child: AppText(
+          params.level?.name ?? "-",
+          textAlign: TextAlign.center,
+          style: AppStyles.bold18.copyWith(decoration: TextDecoration.none, color: AppColors.black),
         ),
       ),
     );

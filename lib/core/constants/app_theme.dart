@@ -11,7 +11,7 @@ class AppTheme {
 
   static final ThemeData light = ThemeData(
     // useMaterial3: true,
-    // fontFamily: 'Hacen-Tunisia',
+    fontFamily: 'Mooli',
     brightness: Brightness.light,
     primaryColor: AppColors.primary,
     floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: AppColors.accent, elevation: 4.sp),
@@ -39,11 +39,9 @@ class AppTheme {
           textStyle: const TextStyle(color: AppColors.accent),
           shape: RoundedRectangleBorder(borderRadius: radius)),
     ),
-
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(borderRadius: radius, borderSide: const BorderSide(color: AppColors.greyApp)),
     ),
-
     //configure app bar theme
     appBarTheme: AppBarTheme(
       toolbarHeight: 60,
@@ -51,7 +49,7 @@ class AppTheme {
       iconTheme: const IconThemeData(color: AppColors.black),
       // color: AppColors.primary,
       backgroundColor: AppColors.white,
-      titleTextStyle: AppStyles.bold18.copyWith(color: AppColors.black),
+      titleTextStyle: AppStyles.bold18.copyWith(fontFamily: 'Mooli'),
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(bottom: Radius.circular(10))),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(backgroundColor: AppColors.white),
@@ -62,21 +60,22 @@ class AppTheme {
       iconColor: AppColors.primary,
       shape: RoundedRectangleBorder(borderRadius: radius),
     ),
-    textTheme: const TextTheme(
-        displayLarge: TextStyle(color: AppColors.black, fontSize: 22, fontWeight: FontWeight.w700),
-        displayMedium: TextStyle(color: AppColors.black, fontSize: 22, fontWeight: FontWeight.w600),
-        displaySmall: TextStyle(color: AppColors.black, fontSize: 22, fontWeight: FontWeight.w500),
-        headlineMedium: TextStyle(color: AppColors.black, fontSize: 22, fontWeight: FontWeight.w400),
-        headlineSmall: TextStyle(color: AppColors.black, fontSize: 22, fontWeight: FontWeight.w300),
-        bodyLarge: TextStyle(color: AppColors.black, fontSize: 18, fontWeight: FontWeight.w500),
-        bodyMedium: TextStyle(color: AppColors.black, fontSize: 16, fontWeight: FontWeight.w400),
-        titleMedium: TextStyle(color: Color(0xff6A6A6A), fontSize: 17, fontWeight: FontWeight.w500),
-        titleSmall: TextStyle(color: Color(0xff6A6A6A), fontSize: 17, fontWeight: FontWeight.w400),
-        labelLarge: TextStyle(color: AppColors.black, fontSize: 16, fontWeight: FontWeight.w700)),
+    // textTheme: const TextTheme(
+    //   displayLarge: TextStyle(color: AppColors.black, fontSize: 22, fontWeight: FontWeight.w700),
+    //   displayMedium: TextStyle(color: AppColors.black, fontSize: 22, fontWeight: FontWeight.w600),
+    //   displaySmall: TextStyle(color: AppColors.black, fontSize: 22, fontWeight: FontWeight.w500),
+    //   headlineMedium: TextStyle(color: AppColors.black, fontSize: 22, fontWeight: FontWeight.w400),
+    //   headlineSmall: TextStyle(color: AppColors.black, fontSize: 22, fontWeight: FontWeight.w300),
+    //   bodyLarge: TextStyle(color: AppColors.black, fontSize: 18, fontWeight: FontWeight.w500),
+    //   bodyMedium: TextStyle(color: AppColors.black, fontSize: 16, fontWeight: FontWeight.w400),
+    //   titleMedium: TextStyle(color: Color(0xff6A6A6A), fontSize: 17, fontWeight: FontWeight.w500),
+    //   titleSmall: TextStyle(color: Color(0xff6A6A6A), fontSize: 17, fontWeight: FontWeight.w400),
+    //   labelLarge: TextStyle(color: AppColors.black, fontSize: 16, fontWeight: FontWeight.w700),
+    // ),
   );
 
   static final ThemeData dark = ThemeData(
-    // fontFamily: 'Hacen-Tunisia',
+    fontFamily: 'Mooli',
     brightness: Brightness.dark,
     primaryColor: AppColors.primary,
     // primaryColorBrightness: Brightness.dark,

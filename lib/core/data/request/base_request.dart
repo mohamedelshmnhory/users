@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:users/core/app_flavor.dart';
 
 import '../models/request_model.dart';

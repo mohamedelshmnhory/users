@@ -1,13 +1,14 @@
 import 'package:injectable/injectable.dart';
+import 'package:users/core/dependencies/dependency_init.dart';
 import '../../register/data/model/login_model.dart';
 import '../data/repo/auth_repo.dart';
 
 @Singleton()
 class AuthHandler {
-  AuthHandler() {
+  AuthHandler(this._authRepository) {
     appStarted();
   }
-  final AuthRepository _authRepository = AuthRepository();
+  final AuthRepository _authRepository;
 
   LoginModel? loginModel;
 
@@ -25,8 +26,12 @@ class AuthHandler {
 
   Future<void> saveLogin(LoginModel model) async {
     loginModel = model;
-    await _authRepository.setToken(model.token!);
-    await _authRepository.setUser(model);
+    try {
+      await _authRepository.setToken(model.token!);
+      await _authRepository.setUser(model);
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<void> logOut() async {

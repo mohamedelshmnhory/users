@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../resources.dart';
 
-
 class AppButton extends StatelessWidget {
   const AppButton(
       {Key? key,
@@ -47,10 +46,10 @@ class AppButton extends StatelessWidget {
       child: Container(
         width: width ?? double.infinity,
         margin: margin ?? EdgeInsets.zero,
-        height: SizeConfig.getFontSize(height ?? 50),
+        // height: SizeConfig.getFontSize(height ?? 50),
         decoration: const BoxDecoration(
           color: AppColors.primary,
-          borderRadius: BorderRadius.all(Radius.circular(30)),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
           // gradient: LinearGradient(
           //   begin: const Alignment(0.9, 0.5),
           //   end: const Alignment(0, 0.5),
@@ -64,7 +63,7 @@ class AppButton extends StatelessWidget {
           color: color,
           onPressed: onPressed,
           disabledColor: AppColors.brownishGrey,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           child: isLoading
               ? const CircularProgressIndicator(color: AppColors.white)
               : child ??
@@ -73,12 +72,11 @@ class AppButton extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Expanded(child: Center(child: prefix ?? const SizedBox())),
-                      Text(
+                      AppText(
                         textKey,
-                        style: TextStyle(
+                        style: AppStyles.medium14.copyWith(
                           color: textColor ?? AppColors.white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: SizeConfig.getFontSize(fontSize ?? 16.0),
+                          fontSize: fontSize,
                         ),
                         textAlign: TextAlign.center,
                       ),

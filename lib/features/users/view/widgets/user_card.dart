@@ -8,6 +8,7 @@ import '../../../../core/resources.dart';
 import '../../../../core/services/alert.dart';
 import '../../../../core/services/redirect_manager.dart';
 import '../../../../core/view/widgets/should_login.dart';
+import '../../../authentication/login/logic/auth_handler.dart';
 import '../../../authentication/register/data/model/user.dart';
 import '../../../levels/view/screens/levels_screen.dart';
 import '../../../profile/view/profile_screen.dart';
@@ -95,22 +96,24 @@ class FavouriteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<FavouritesCubit, FavouritesState>(
-      bloc: getIt<FavouritesCubit>(),
-      listener: (context, state) {},
-      builder: (context, state) {
-        return GestureDetector(
-          onTap: () {
-            if (state.loading) return;
-            if (user.is_favourite == true) {
-              getIt<FavouritesCubit>().deleteFavourite(user);
-            } else {
-              getIt<FavouritesCubit>().addFavourite(user);
-            }
-          },
-          child: Icon(user.is_favourite == true ? Icons.bookmark : Icons.bookmark_border),
-        );
-      },
-    );
+    return getIt<AuthHandler>().loginModel == null
+        ? const SizedBox()
+        : BlocConsumer<FavouritesCubit, FavouritesState>(
+            bloc: getIt<FavouritesCubit>(),
+            listener: (context, state) {},
+            builder: (context, state) {
+              return GestureDetector(
+                onTap: () {
+                  if (state.loading) return;
+                  if (user.is_favourite == true) {
+                    getIt<FavouritesCubit>().deleteFavourite(user);
+                  } else {
+                    getIt<FavouritesCubit>().addFavourite(user);
+                  }
+                },
+                child: Icon(user.is_favourite == true ? Icons.bookmark : Icons.bookmark_border),
+              );
+            },
+          );
   }
 }

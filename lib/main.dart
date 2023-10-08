@@ -3,12 +3,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:users/core/services/cache_helper.dart';
 import 'package:users/router/app_router.dart';
 import 'package:users/core/constants/app_theme.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'core/app_flavor.dart';
 import 'core/dependencies/dependency_init.dart';
 import 'core/services/app_logger.dart';
+import 'core/services/storage_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,10 +31,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(390, 844),
+      minTextAdapt: true,
+      fontSizeResolver: FontSizeResolvers.radius,
       useInheritedMediaQuery: true,
       builder: (context, mediaQuery) {
         return MaterialApp.router(
-          title: 'Users',
+          title: 'cvs',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.light,
           // routerConfig: AppRouter.router,

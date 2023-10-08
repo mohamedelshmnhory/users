@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,6 +18,7 @@ import '../../authentication/register/data/model/user.dart';
 import '../../home/view/screens/home_screen.dart';
 import '../logic/profile_cubit.dart';
 import 'edit_profile_screen.dart';
+import 'package:file_picker/file_picker.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const id = 'profile-screen';
@@ -35,7 +37,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final authHandler = getIt<AuthHandler>();
   late User user = widget.user;
   late final bool isMe = authHandler.loginModel?.user == user;
-  File? _avatarFile;
+  dynamic? _avatarFile;
+  PlatformFile? _imageFile;
 
   @override
   void initState() {
@@ -123,22 +126,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
         Container(
           clipBehavior: Clip.hardEdge,
           height: SizeConfig.getH(150),
-          width: SizeConfig.getW(150),
+          width: SizeConfig.getH(150),
           decoration:
               BoxDecoration(shape: BoxShape.circle, color: Colors.white, border: Border.all(color: Colors.grey, width: 1)),
           child: _avatarFile != null
-              ? Image.file(_avatarFile!, fit: BoxFit.cover)
+              ? kIsWeb
+                  ? Image.network(_avatarFile.path, fit: BoxFit.cover)
+                  : Image.file(_avatarFile!, fit: BoxFit.cover)
               : user.avatar == null
-                  ? Icon(Icons.camera_alt_outlined, color: Colors.grey, size: SizeConfig.getFontSize(60))
+                  ? Icon(Icons.person, color: Colors.grey, size: SizeConfig.getFontSize(60))
                   : ImageLoader(path: user.avatar ?? '', fit: BoxFit.cover),
         ),
         if (isMe)
           GestureDetector(
             onTap: () {
-              ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 50).then((image) {
+              ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 50).then((XFile? image) {
                 if (image != null) {
                   setState(() {
-                    _avatarFile = File(image.path);
+                    _avatarFile = kIsWeb ? image : File(image.path);
                   });
                   profileCubit.updateProfile(User(avatar: _avatarFile));
                 }
@@ -151,5 +156,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
       ],
     );
+  }
+
+  Future<void> _pickImage() async {
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.image,
+      );
+
+      if (result == null) return;
+
+      setState(() {
+        _imageFile = result.files.first;
+      });
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }

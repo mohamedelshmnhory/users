@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
               50.heightBox(),
               ImageLoader(path: Assets.logo, height: 80),
               40.heightBox(),
-              AppText('Login', style: AppStyles.bold18.copyWith(color: AppColors.primary)),
+              AppText(kIsWeb ? 'Web Login' : 'Login', style: AppStyles.bold18.copyWith(color: AppColors.primary)),
               30.heightBox(),
               AppTextField(
                 hintKey: 'Username',

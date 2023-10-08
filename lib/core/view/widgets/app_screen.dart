@@ -40,32 +40,34 @@ class AppScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final uiOverlayStyle = SystemUiOverlayStyle(
-        // statusBarColor: AppColors.transparent,
-        // statusBarIconBrightness: lightStatusBar ? Brightness.light : Brightness.dark,
-        // // For Android (dark icons)
-        // statusBarBrightness: lightStatusBar ? Brightness.dark : Brightness.light,
-        // // For iOS (dark icons)
-        // systemStatusBarContrastEnforced: true,
-        // systemNavigationBarColor: Colors.transparent,
-        // // systemNavigationBarDividerColor: Colors.transparent,
-        // systemNavigationBarIconBrightness: lightStatusBar ? Brightness.light : Brightness.dark,
-        );
+    // final uiOverlayStyle =   SystemUiOverlayStyle(
+    //     // statusBarColor: AppColors.transparent,
+    //     // statusBarIconBrightness: lightStatusBar ? Brightness.light : Brightness.dark,
+    //     // // For Android (dark icons)
+    //     // statusBarBrightness: lightStatusBar ? Brightness.dark : Brightness.light,
+    //     // // For iOS (dark icons)
+    //     // systemStatusBarContrastEnforced: true,
+    //     // systemNavigationBarColor: Colors.transparent,
+    //     // // systemNavigationBarDividerColor: Colors.transparent,
+    //     // systemNavigationBarIconBrightness: lightStatusBar ? Brightness.light : Brightness.dark,
+    //     );
 
-    return AnnotatedRegion(
-      value: uiOverlayStyle,
-      child: Scaffold(
-        backgroundColor: backgroundColor,
-        resizeToAvoidBottomInset: false,
-        body: Padding(
-          padding: padding ?? symmetricPadding(15, 15),
-          child: child,
-        ),
-        appBar: withBack || appBar != null || title != null || !isNullOrEmpty(actions) ? buildAppBar(context) : null,
-        bottomNavigationBar: bottomNavigationBar,
-        floatingActionButton: floatingActionButton,
-        drawer: drawer,
+    return
+        // AnnotatedRegion(
+        // value: uiOverlayStyle,
+        // child:
+        Scaffold(
+      backgroundColor: backgroundColor,
+      resizeToAvoidBottomInset: false,
+      body: Padding(
+        padding: padding ?? symmetricPadding(15, 15),
+        child: child,
       ),
+      appBar: withBack || appBar != null || title != null || !isNullOrEmpty(actions) ? buildAppBar(context) : null,
+      bottomNavigationBar: bottomNavigationBar,
+      floatingActionButton: floatingActionButton,
+      drawer: drawer,
+      // ),
     );
   }
 

@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'app_colors.dart';
 
 class AppStyles {
-  static TextStyle bold18 = TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.bold, fontSize: 18.sp);
-  static TextStyle bold14 = TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.bold, fontSize: 14.sp);
-  static TextStyle bold15 = TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.bold, fontSize: 15.sp);
+  static TextStyle bold18 = const TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.bold, fontSize: 18);
+  static TextStyle bold14 = const TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.bold, fontSize: 14);
+  static TextStyle bold15 = const TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.bold, fontSize: 15);
 
-  static TextStyle bold10 = TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.bold, fontSize: 10.sp);
-  static TextStyle bold12 = TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.bold, fontSize: 12.sp);
-  static TextStyle bold22 = TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.bold, fontSize: 22.sp);
+  static TextStyle bold10 = const TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.bold, fontSize: 10);
+  static TextStyle bold12 = const TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.bold, fontSize: 12);
+  static TextStyle bold22 = const TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.bold, fontSize: 22);
 
-  static TextStyle bold20 = TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.bold, fontSize: 20.sp);
-  static TextStyle bold24 = TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.bold, fontSize: 24.sp);
+  static TextStyle bold20 = const TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.bold, fontSize: 20);
+  static TextStyle bold24 = const TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.bold, fontSize: 24);
 
-  static TextStyle medium18 = TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.normal, fontSize: 18.sp);
+  static TextStyle medium18 = const TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.normal, fontSize: 18);
 
-  static TextStyle medium16 = TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.normal, fontSize: 16.sp);
-  static TextStyle medium20 = TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.normal, fontSize: 20.sp);
-  static TextStyle medium22 = TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.normal, fontSize: 22.sp);
-  static TextStyle medium12 = TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.normal, fontSize: 12.sp);
-  static TextStyle medium10 = TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.normal, fontSize: 10.sp);
-  static TextStyle medium14 = TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.normal, fontSize: 14.sp);
+  static TextStyle medium16 = const TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.normal, fontSize: 16);
+  static TextStyle medium20 = const TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.normal, fontSize: 20);
+  static TextStyle medium22 = const TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.normal, fontSize: 22);
+  static TextStyle medium12 = const TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.normal, fontSize: 12);
+  static TextStyle medium10 = const TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.normal, fontSize: 10);
+  static TextStyle medium14 = const TextStyle(color: AppColors.fontColor, fontWeight: FontWeight.normal, fontSize: 14);
 
   static BoxDecoration buttonShadow({Color? color}) => BoxDecoration(
         boxShadow: <BoxShadow>[
